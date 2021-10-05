@@ -32,7 +32,7 @@ class HGmodule():
                             ])
 
         self.model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-        self.model.load_weights('HGR_test_7.h5')
+        self.model.load_weights(r'D:\FPT\Project\saveModule\HGR_test_10.h5')
 
     def plot_image2(self,img):
         img_cvt = img
@@ -42,8 +42,8 @@ class HGmodule():
         plt.ylabel("Height")
         plt.show()
     def predictGesture(self, image):
-        labelList = ["background","1 figure", " 2 figure", "3 figure"]
-        image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+        labelList = [ "Right Click","", " left click", ""]
+        # image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         image=cv2.resize(image,(40,40),interpolation=cv2.INTER_AREA)
         cv2.imshow("predict image",image)
         image=np.array(image)
