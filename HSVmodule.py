@@ -8,6 +8,7 @@ class HSV:
     def __init__(self):
         # 0 , 38 , 0
         cv2.namedWindow("HSV trackBar")
+        cv2.resizeWindow("HSV trackBar",320,320)
         cv2.createTrackbar("L-H", "HSV trackBar", 0, 179, self.Nothing)
         cv2.createTrackbar("L-S", "HSV trackBar", 38, 255, self.Nothing)
         cv2.createTrackbar("L-V", "HSV trackBar", 0, 255, self.Nothing)
