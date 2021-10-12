@@ -36,7 +36,7 @@ class HGmodule():
         self.model.load_weights(r'D:\FPT\Project\saveModule\HGR_test_12.h5')
 
     def plot_image2(self,img):
-        # img_cvt = img.copy()
+        img_cvt = img.copy()
         # img_cvt =cv2.cvtColor(img_cvt,cv2.COLOR_GRAY2)
         print(img_cvt.shape)  # Prints the shape of the image just to check
         plt.imshow(img_cvt)  # Shows the image
@@ -51,7 +51,6 @@ class HGmodule():
         image=np.array(image)
         images = image.reshape(1, 40, 40, 1)
         classes = self.model.predict(images)
-        print(classes)
         # print(np.argsort(classes))
         predicted_label = np.argmax(classes)
         return labelList[predicted_label]

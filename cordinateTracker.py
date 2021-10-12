@@ -12,7 +12,6 @@ class transferModule():
         self.plocX, self.plocY = 0, 0
         self.clocX, self.clocY = 0, 0
     def transfer(self,image,xIndex,yIndex):
-        cv2.rectangle(image, (self.start, self.start), (self.wCam -self.frameR, self.hCam - self.frameR), (0, 255, 255), 2)
         xTrans = np.interp(xIndex,(self.start,self.wCam - self.frameR ),(0,self.wScr))
         yTrans = np.interp(yIndex,(self.start,self.hCam - self.frameR ),(0,self.hScr))
         self.clocX = self.plocX + (xTrans - self.plocX) / self.smothing
@@ -22,3 +21,5 @@ class transferModule():
             self.plocX,self.plocY = self.clocX , self.clocY
         except:
             pass
+    def leftClick(self):
+        autopy.mouse.click()
