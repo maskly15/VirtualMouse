@@ -43,11 +43,11 @@ class HGmodule():
         plt.xlabel("Width")
         plt.ylabel("Height")
         plt.show()
+
     def predictGesture(self, image):
         labelList = [ "Right Click","", "left click", ""]
         # image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         image=cv2.resize(image,(40,40),interpolation=cv2.INTER_AREA)
-        cv2.imshow("predict image",image)
         image=np.array(image)
         images = image.reshape(1, 40, 40, 1)
         classes = self.model.predict(images)

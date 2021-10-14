@@ -1,6 +1,14 @@
 import autopy
 import numpy as np
-import cv2
+# from autopy.mouse import LEFT_BUTTON, RIGHT_BUTTON
+# from autopy.key import *
+# from autopy import *
+# import cv2
+# from matplotlib.widgets import Button
+# from sklearn.linear_model import Lars
+import  pyautogui as auto
+
+
 class transferModule():
     def __init__(self,wCam=640,hCam=480,start=0,frameR=200,smothing =10):
         self.wCam=wCam
@@ -22,4 +30,6 @@ class transferModule():
         except:
             pass
     def leftClick(self):
-        autopy.mouse.click()
+        auto.mouseDown(button='left')
+    def relaseKey(self):
+        auto.mouseUp(button='left')

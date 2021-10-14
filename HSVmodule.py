@@ -38,7 +38,7 @@ class HSV:
         return X,x
 
 
-    def extractHand(self,image,index=None,zone = None,origin =None):
+    def extractHand(self,image,index=None,zone = None,origin =None,name=None):
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         if index is not None:
             XZONE,YZONE,xzone,yzone =zone
@@ -75,6 +75,8 @@ class HSV:
             mask = mask2
         else:
             return  np.zeros((mask.shape))
+        # locate=r"D:\FPT\Project\BinaryData3\raw"
+        # cv2.imwrite(locate+"\\"+str(name)+".jpg",mask)
         return mask
 
 
