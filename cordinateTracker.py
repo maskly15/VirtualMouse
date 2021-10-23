@@ -10,18 +10,16 @@ import  pyautogui as auto
 
 
 class transferModule():
-    def __init__(self,wCam=640,hCam=480,start=0,frameR=200,smothing =10):
-        self.wCam=wCam
-        self.hCam= hCam
+    def __init__(self,start,zoneSize,smothing =10):
+        self.wCam, self.hCam= zoneSize
         self.wScr,self.hScr= autopy.screen.size()
-        self.start =start
-        self.frameR = frameR
+        self.start = start
         self.smothing = smothing
         self.plocX, self.plocY = 0, 0
         self.clocX, self.clocY = 0, 0
-    def transfer(self,image,xIndex,yIndex):
-        xTrans = np.interp(xIndex,(self.start,self.wCam - self.frameR ),(0,self.wScr))
-        yTrans = np.interp(yIndex,(self.start,self.hCam - self.frameR ),(0,self.hScr))
+    def transfer(self,xIndex,yIndex):
+        xTrans = np.interp(xIndex,(self.start,self.wCam  ),(0,self.wScr))
+        yTrans = np.interp(yIndex,(self.start,self.hCam  ),(0,self.hScr))
         self.clocX = self.plocX + (xTrans - self.plocX) / self.smothing
         self.clocY = self.plocY + (yTrans - self.plocY) / self.smothing
         try:
@@ -30,6 +28,5 @@ class transferModule():
         except:
             pass
     def leftClick(self):
-        auto.mouseDown(button='left')
-    def relaseKey(self):
-        auto.mouseUp(button='left')
+        autopy.mouse.click()
+

@@ -33,9 +33,9 @@ class HGmodule():
 ])
 
         self.model.compile(optimizer='adam', loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-        self.modoad_weights(r'D:\FPT\Project\saveModule\HGR_test_18.h5')
+        self.model.load_weights(r'D:\FPT\Project\saveModule\HGR_test_18.h5')
 
-    el.l
+    # el.l
     def plot_image2(self,img):
         img_cvt = img.copy()
         # img_cvt =cv2.cvtColor(img_cvt,cv2.COLOR_GRAY2)
