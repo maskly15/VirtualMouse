@@ -50,7 +50,7 @@ predictModule = HGmodule()
 ctModule =  ct.transferModule(start,zoneSize)
 count =0
 frameTake = 0
-delay = 60
+delay = 30
 while True:
     # 0 , 38 , 0
     result, image= cap.read()
