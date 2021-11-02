@@ -62,4 +62,4 @@ class HGmodule():
         classes = self.model.predict(images)
         # print(np.argsort(classes))
         predicted_label = np.argmax(classes)
-        return labelList[predicted_label]
+        return predicted_label

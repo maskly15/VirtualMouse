@@ -6,9 +6,12 @@ from Library import *
 wCam,hCam = 640,480
 wScr,hScr=autopy.screen.size()
 frameR,start= (200,20)
-cap = cv2.VideoCapture(3)
+cameraNum = 3
+cap = cv2.VideoCapture(cameraNum) # This varibles depent what Camera will be used
 cap.set(3,wCam)
 cap.set(4,hCam)
+labelList = [ "nothing","move", "Left", "Right"]
+labelList2 = ["background","index","two","three"]
 #############################
 ########## def###############
 
@@ -48,11 +51,12 @@ zone=(start,start,wCam-frameR,hCam-frameR)
 HSVmodule = HSV()
 predictModule = HGmodule()
 ctModule =  ct.transferModule(start,zoneSize)
-count =0
 frameTake = 0
-delay = 30
+delay = 30 # the delay between command
+countFrame =0
 while True:
     # 0 , 38 , 0
+
     result, image= cap.read()
     image = cv2.flip(image,1)
     image = cv2.rotate(image, cv2.ROTATE_180)
@@ -64,10 +68,14 @@ while True:
     hsv,index=HSVmodule.extractHand(predcitScr)
     hsv = cv2.resize(hsv,(320,320))
     rPredict = predictModule.predictGesture(hsv)
-    cv2.putText(image, str(rPredict), (320, 320), cv2.FONT_HERSHEY_PLAIN, 3,
+    rShow =  labelList2[rPredict] +": "+labelList[rPredict]
+    cv2.putText(image, rShow, (100, 320), cv2.FONT_HERSHEY_PLAIN, 3,
                 (255, 0, 0), 3)
-    if frameTake >= delay and (rPredict == "Left" or rPredict =='Right') :
-        print("Command: left click ")
+    if frameTake >= delay and (rPredict == 2 ) :
+        ctModule.leftClick()
+        frameTake = 0
+    if frameTake >= delay and (rPredict == 3) :
+        ctModule.leftClick()
         ctModule.leftClick()
         frameTake = 0
     # if rPredict =="Right":
@@ -96,6 +104,8 @@ while True:
         frameTake += 1
     fps(image,cTime,pTime)
     pTime = cTime
+    cv2.putText(predcitScr, str(rPredict), (30, 30), cv2.FONT_HERSHEY_PLAIN, 2,
+                (255, 0, 0), 3)
     cv2.imshow("mousezone",predcitScr)
     cv2.imshow("window",image)
     cv2.imshow("HSV",cv2.resize(hsv,(320,320)))
